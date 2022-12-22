@@ -51,9 +51,12 @@ class AmostrasController{
     static async findCod(req, res){
         const cod = req.query.cod;
         try{
-            amostras.find({'cod': cod}, {}, (err, amostras) => {
+            amostras.find({'cod': new RegExp('.*'+cod+'.*') }, {}, (err, amostras) => {
                 return res.status(200).json(amostras);
             })
+            // amostras.find({'cod': cod}, {}, (err, amostras) => {
+            //     return res.status(200).json(amostras);
+            // })
         }catch(error){
             return res.status(500).send(error.message);
         }
@@ -63,9 +66,12 @@ class AmostrasController{
     static async findFamilia(req, res){
         const familia = req.query.familia;
         try{
-            amostras.find({'familia': familia}, {}, (err, amostras) => {
+            amostras.find({'familia': { $regex: '.*'+familia+'.*' }}, (err, amostras) => {
                 return res.status(200).json(amostras);
             })
+            // amostras.find({'familia': /familia/}, {}, (err, amostras) => {
+            //     return res.status(200).json(amostras);
+            // }).lean()
         }catch(error){
             return res.status(500).send(error.message);
         }
