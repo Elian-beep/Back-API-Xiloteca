@@ -12,7 +12,7 @@ class UsuariosController{
         }
     }
 
-    // ALTERAR OS DADOS DE UMA AMOSTRA
+    // ALTERAR OS DADOS DE UM USUÁRIO
     static async alterUser(req, res){
         try{
             const { id } = req.params;
@@ -23,6 +23,22 @@ class UsuariosController{
                     res.status(500).json(err.message);
                 }
             })
+        }catch(error){
+            res.status(500).json(error.message);
+        }
+    }
+
+    // DELETAR UM USUÁRIO
+    static deleteUser = (req, res) => {
+        const { id } = req.params;
+        try{
+            usuarios.findByIdAndDelete(id, (err) => {
+                if (!err) {
+                    res.status(200).json({message: 'Usuário removido com sucesso'});
+                }else{
+                    res.status(500).json(err.message);        
+                }
+            });
         }catch(error){
             res.status(500).json(error.message);
         }
