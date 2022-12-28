@@ -43,6 +43,18 @@ class UsuariosController{
             res.status(500).json(error.message);
         }
     }
+
+    // BUSCAR USUÁRIO PELO E-MAIL
+    static async findEmail(req, res){
+        const email = req.query.email;
+        try{
+            usuarios.find({'email': email}, {}, (err, usuario) => {
+                return res.status(200).json(usuario);
+            })
+        }catch(error){
+            return res.status(500).json(error.message);
+        }
+    }
 }
 
 export default UsuariosController;
