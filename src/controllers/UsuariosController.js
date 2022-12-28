@@ -49,7 +49,11 @@ class UsuariosController{
         const email = req.query.email;
         try{
             usuarios.find({'email': email}, {}, (err, usuario) => {
-                return res.status(200).json(usuario);
+                if (usuario.length == 0) {
+                    return res.status(200).json({finded: false});
+                }else{
+                    return res.status(200).json({finded: true})
+                }
             })
         }catch(error){
             return res.status(500).json(error.message);
