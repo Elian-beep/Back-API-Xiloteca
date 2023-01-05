@@ -60,7 +60,6 @@ class UsuariosController {
                 if (usuarios.length == 0) {
                     return res.status(200).json(user);
                 } else {
-                    res.status(200).json(usuarios)
                     return res.status(200).json(usuarios);
                 }
             })
