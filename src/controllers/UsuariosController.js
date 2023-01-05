@@ -1,29 +1,30 @@
+import { json } from "express";
 import usuarios from "../models/Usuario.js";
 
-class UsuariosController{
+class UsuariosController {
     // CADASTRAR UM NOVO USUARIO
-    static async insertUser(req, res){
-        try{
+    static async insertUser(req, res) {
+        try {
             let usuario = new usuarios(req.body);
             await usuario.save();
             return res.status(200).send(usuario);
-        }catch(error){
+        } catch (error) {
             return res.status(500).json(error.message);
         }
     }
 
     // ALTERAR OS DADOS DE UM USUÁRIO
-    static async alterUser(req, res){
-        try{
+    static async alterUser(req, res) {
+        try {
             const { id } = req.params;
-            usuarios.findByIdAndUpdate(id, { $set: req.body }, (err)=>{
+            usuarios.findByIdAndUpdate(id, { $set: req.body }, (err) => {
                 if (!err) {
                     res.status(200).json({ message: 'Usuário alterado' });
-                }else{
+                } else {
                     res.status(500).json(err.message);
                 }
             })
-        }catch(error){
+        } catch (error) {
             res.status(500).json(error.message);
         }
     }
@@ -31,31 +32,39 @@ class UsuariosController{
     // DELETAR UM USUÁRIO
     static deleteUser = (req, res) => {
         const { id } = req.params;
-        try{
+        try {
             usuarios.findByIdAndDelete(id, (err) => {
                 if (!err) {
-                    res.status(200).json({message: 'Usuário removido com sucesso'});
-                }else{
-                    res.status(500).json(err.message);        
+                    res.status(200).json({ message: 'Usuário removido com sucesso' });
+                } else {
+                    res.status(500).json(err.message);
                 }
             });
-        }catch(error){
+        } catch (error) {
             res.status(500).json(error.message);
         }
     }
 
     // BUSCAR USUÁRIO PELO E-MAIL
-    static async findEmail(req, res){
+    static async findEmail(req, res) {
         const email = req.query.email;
-        try{
-            usuarios.find({'email': email}, {}, (err, usuario) => {
-                if (usuario.length == 0) {
-                    return res.status(200).json({finded: false});
-                }else{
-                    return res.status(200).json({finded: true})
+        let user = [{
+            "_id": "",
+            "nome": "",
+            "usuario": "",
+            "email": "",
+            "senha": ""
+        }];
+        try {
+            usuarios.find({ 'email': email }, {}, (err, usuarios) => {
+                if (usuarios.length == 0) {
+                    return res.status(200).json(user);
+                } else {
+                    res.status(200).json(usuarios)
+                    return res.status(200).json(usuarios);
                 }
             })
-        }catch(error){
+        } catch (error) {
             return res.status(500).json(error.message);
         }
     }
