@@ -56,11 +56,11 @@ class UsuariosController {
             "senha": ""
         }];
         try {
-            usuarios.find({ 'email': email }, {}, (err, usuarios) => {
-                if (usuarios.length == 0) {
+            usuarios.find({ 'email': email }, {}, (err, usuario) => {
+                if (usuario.length == 0) {
                     return res.status(200).json(user);
                 } else {
-                    return res.status(200).json(usuarios);
+                    return res.status(200).json(usuario);
                 }
             })
         } catch (error) {
