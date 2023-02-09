@@ -12,7 +12,7 @@ class AdminController {
         if (!token) {
             return res.status(401).json({msg: "Acesso negado"});
         }
-
+        
         try{
             const secret = process.env.SECRET;
             jwt.verify(token, secret);
@@ -106,7 +106,7 @@ class AdminController {
                 },
                 secret
             );
-            return res.status(200).json({msg: "Autenticação realizada com sucesso: ", token});
+            return res.status(200).json({msg: "Autenticação realizada com sucesso: ", token, "Admin": user._id});
         } catch (error) {
             res.status(500).json({ msg: 'Erro na autenticação: ', error });
         }
