@@ -78,22 +78,22 @@ class AdminController {
 
     // LOGIN AUTH
     static async authAdmin(req, res) {
-        const { usuario, senha } = req.body;
-        if (!usuario) {
+        const admin = req.body;
+        if (!admin.usuario) {
             return res.status(422).json({ msg: "O usuário é obrigatório!" });
         }
-        if (!senha) {
+        if (!admin.senha) {
             return res.status(422).json({ msg: "A senha é obrigatório!" });
         }
 
         // CHECK IF USER EXISTS
-        const user = await Admin.findOne({ usuario: usuario });
+        const user = await Admin.findOne({ usuario: admin.usuario });
         if (!user) {
             return res.status(404).json({ msg: "Usuário não encontrado!" });
         }
 
         // CHECK IF PASSWORD MATCH
-        const checkSenha = await bcrypt.compare(senha, user.senha);
+        const checkSenha = await bcrypt.compare(admin.senha, user.senha);
         if (!checkSenha) {
             return res.status(422).json({ msg: "Senha inválida!" });
         }
