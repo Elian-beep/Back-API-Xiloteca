@@ -6,6 +6,7 @@ import Admin from "../models/Admin.js";
 
 class AdminController {
     static checkToken(req, res, next) {
+        const onlyCheck = req.params.onlyCheck;
         const authHeader = req.headers['authorization'];
         const token = authHeader && authHeader.split(" ")[1];
     
@@ -16,6 +17,9 @@ class AdminController {
         try{
             const secret = process.env.SECRET;
             jwt.verify(token, secret);
+            if (onlyCheck == 'true') {
+                return res.status(200).json({msg: "Token válido!"});
+            }
             next();
         }catch(error){
             res.status(400).json({msg: "Token inválido!", error});
