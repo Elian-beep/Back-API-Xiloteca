@@ -25,6 +25,7 @@ class AdminController {
             }
             next();
         } catch (error) {
+            console.log(token);
             res.status(400).json({ msg: "Token inválido!", error });
         }
     }
@@ -62,6 +63,12 @@ class AdminController {
                 },
                 secret
             );
+            //ISERINDO TOKEN GERADO NO BANCO DE DADOS
+            const myToken = new Token({
+                token: token
+            });
+            await myToken.save();
+
             return res.status(200).json({ msg: "Autenticação realizada com sucesso: ", token, "Admin": user._id });
         } catch (error) {
             res.status(500).json({ msg: 'Erro na autenticação: ', error });
@@ -69,26 +76,14 @@ class AdminController {
     }
 
     // TRATAMENTO DE TOKEN POR SESSÃO
-    static async insertToken(req, res) {
-        const { token } = req.body;
-        if (!token) {
-            return res.status(422).json({ msg: "Nenhum token enviado!" });
-        }
-        const myToken = new Token({
-            token
-        });
-        try {
-            await myToken.save();
-            return res.status(201).json({ msg: "Token inserido sucesso!" })
-        } catch (error) {
-            res.status(500).json({ msg: 'Erro na inserção de token: ', error });
-        }
-    }
 
     static async listToken(req, res) {
-        const { token } = req.body;
+        const { token } = req.params;
         try{
             Token.find({"token":token}, {}, (err, findedToken) => {
+                if (findedToken.length == 0) {
+                    return res.status(404).json({ msg: "Token não encontrado", cod: 404 });
+                }
                 res.status(200).json(findedToken);
             })
         }catch(error){
