@@ -77,17 +77,39 @@ class AdminController {
         const myToken = new Token({
             token
         });
-        try{
+        try {
             await myToken.save();
             return res.status(201).json({ msg: "Token inserido sucesso!" })
-        }catch(error){
+        } catch (error) {
             res.status(500).json({ msg: 'Erro na inserção de token: ', error });
         }
     }
 
-    static async listToken(req, res) { }
+    static async listToken(req, res) {
+        const { token } = req.body;
+        try{
+            Token.find({"token":token}, {}, (err, findedToken) => {
+                res.status(200).json(findedToken);
+            })
+        }catch(error){
+            res.status(500).json({ msg: 'Erro na pesquisa do token: ', error });
+        }
+    }
 
-    static async delToken(req, res) { }
+    static async delToken(req, res) {
+        const { id } = req.params;
+        try {
+            Token.findByIdAndDelete(id, (err) => {
+                if (!err) {
+                    res.status(200).json({message: 'Token removida com sucesso'});
+                }else{
+                    res.status(500).json(err.message);  
+                }
+            });
+        } catch (error) {
+            res.status(500).json({ msg: 'Erro na exclusão: ', error });
+        }
+    }
 
     // INFORMAÇÕES DE ADMIN (MENOS A SENHA)
     static async infosAdmin(req, res) {
