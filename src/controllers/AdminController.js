@@ -25,7 +25,6 @@ class AdminController {
             }
             next();
         } catch (error) {
-            console.log(token);
             res.status(400).json({ msg: "Token inválido!", error });
         }
     }
