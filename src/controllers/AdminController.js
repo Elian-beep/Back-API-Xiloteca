@@ -9,7 +9,6 @@ class AdminController {
 
     // CHECA A VALIDADE E AUTENTICIDADE DO TOKEN GERADO
     static checkToken(req, res, next) {
-        const onlyCheck = req.params.onlyCheck;
         const authHeader = req.headers['authorization'];
         const token = authHeader && authHeader.split(" ")[1];
 
@@ -18,11 +17,14 @@ class AdminController {
         }
 
         try {
+            // Token.find({"token":token}, {}, (err, findedToken) => {
+            //     if (findedToken[0].token !== token) {
+            //         console.log("Token falso ou expirado");
+            //     }
+            // });
             const secret = process.env.SECRET;
             jwt.verify(token, secret);
-            if (onlyCheck == 'true') {
-                return res.status(200).json({ msg: "Token válido!" });
-            }
+            console.log("Token válido");
             next();
         } catch (error) {
             res.status(400).json({ msg: "Token inválido!", error });
