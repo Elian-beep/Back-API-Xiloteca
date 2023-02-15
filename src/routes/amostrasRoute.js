@@ -10,8 +10,8 @@ router
     .get('/amostras/busca/cod', AmostrasController.findCod)
     .get('/amostras/busca/familia', AmostrasController.findFamilia)
     .get('/amostras/:id', AmostrasController.findId)
-    .post('/amostras', AmostrasController.insertAmostra)
-    .put('/amostras/:id', AmostrasController.alterAmostra)
-    .delete('/amostras/:id', AmostrasController.deleteAmostra)
+    .post('/amostras', AmostrasController.checkToken, AmostrasController.insertAmostra)
+    .put('/amostras/:id', AmostrasController.checkToken, AmostrasController.alterAmostra)
+    .delete('/amostras/:id', AmostrasController.checkToken, AmostrasController.deleteAmostra)
 
 export default router;
