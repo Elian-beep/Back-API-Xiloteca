@@ -7,7 +7,7 @@ const amostraSchema = new mongoose.Schema(
         lamina: {type: String},
         herb: {type: String},
         familia: {type: String},
-        nomeCientifico: {type: String, required: true},
+        nomeCientifico: {type: String},
         nomeVulgar: {type: String},
         procedencia: {type: String},
         coletor: {type: String},
