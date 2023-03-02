@@ -66,7 +66,8 @@ class AdminController {
             );
             //ISERINDO TOKEN GERADO NO BANCO DE DADOS
             const myToken = new Token({
-                token: token
+                token: token,
+                expirationDate: Date.now()
             });
             await myToken.save();
 
