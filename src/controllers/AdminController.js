@@ -65,9 +65,10 @@ class AdminController {
                 secret
             );
             //ISERINDO TOKEN GERADO NO BANCO DE DADOS
+            let expirationDate = new Date();
             const myToken = new Token({
                 token: token,
-                expirationDate: Date.now()
+                expirationDate: expirationDate.setHours(expirationDate.getSeconds() + 30)
             });
             await myToken.save();
 
