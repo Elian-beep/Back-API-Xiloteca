@@ -65,10 +65,8 @@ class AdminController {
                 secret
             );
             //ISERINDO TOKEN GERADO NO BANCO DE DADOS
-            let expirationDate = new Date().toLocaleString('pt-BR');
             const myToken = new Token({
-                token: token,
-                expirationDate: expirationDate
+                token: token
             });
             await myToken.save();
 
