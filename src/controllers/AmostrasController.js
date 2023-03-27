@@ -48,17 +48,6 @@ class AmostrasController {
         }
     }
 
-    static async findByCod(cod) {
-        try {
-            amostras.find({ 'cod': new RegExp('.*' + cod + '.*') }, {}, (err, amostras) => {
-                return true;
-            });
-        } catch (error) {
-            console.log(error);
-            return false;
-        }
-    }
-
     // CADASTRAR UMA NOVA AMOSTRA
     static async insertAmostra(req, res) {
         let amostra = new amostras(req.body);
@@ -73,7 +62,7 @@ class AmostrasController {
                     return res.status(500).json(error.message);
                 }
             } else {
-                return res.status(500).json({ msg: "Codigo ja existente" });
+                return res.status(500).json({ msg: "Código ja existente na base de dados!" });
             }
         });
     }
