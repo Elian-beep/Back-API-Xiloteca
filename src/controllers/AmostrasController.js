@@ -40,75 +40,42 @@ class AmostrasController {
         const { id } = req.params;
         try {
             const amostraFound = await amostras.findById(id);
-            return res.status(200).json(amostraFound);
+            // return res.status(200).json(amostraFound);
+            return true;
         } catch (error) {
-            return res.status(400).json(error.message);
+            return false;
+            // return res.status(400).json(error.message);
         }
     }
 
-    // BUSCAR AMOSTRA PELO NOME VULGAR (busca somente se o nome for exato)
-    static async findNV(req, res) {
-        const nv = req.query.nomeVulgar;
-        try {
-            amostras.find({ 'nomeVulgar': nv }, {}, (err, amostras) => {
-                return res.status(200).json(amostras);
-            })
-        } catch (error) {
-            return res.status(500).json(error.message);
-        }
-    }
-
-    // BUSCAR AMOSTRA PELO NOME CIENTÍFICO (busca somente se o nome for exato)
-    static async findNC(req, res) {
-        const nc = req.query.nomeCientifico;
-        try {
-            amostras.find({ 'nomeCientifico': nc }, {}, (err, amostras) => {
-                return res.status(200).json(amostras);
-            })
-        } catch (error) {
-            return res.status(500).send(error.message);
-        }
-    }
-
-    // BUSCAR AMOSTRA PELO CODIGO (busca somente se o nome for exato)
-    static async findCod(req, res) {
-        const cod = req.query.cod;
+    static async findByCod(cod) {
         try {
             amostras.find({ 'cod': new RegExp('.*' + cod + '.*') }, {}, (err, amostras) => {
-                return res.status(200).json(amostras);
-            })
-            // amostras.find({'cod': cod}, {}, (err, amostras) => {
-            //     return res.status(200).json(amostras);
-            // })
+                return true;
+            });
         } catch (error) {
-            return res.status(500).send(error.message);
-        }
-    }
-
-    // BUSCAR AMOSTRA PELO CODIGO (busca somente se o nome for exato)
-    static async findFamilia(req, res) {
-        const familia = req.query.familia;
-        try {
-            amostras.find({ 'familia': { $regex: '.*' + familia + '.*' } }, (err, amostras) => {
-                return res.status(200).json(amostras);
-            })
-            // amostras.find({'familia': /familia/}, {}, (err, amostras) => {
-            //     return res.status(200).json(amostras);
-            // }).lean()
-        } catch (error) {
-            return res.status(500).send(error.message);
+            console.log(error);
+            return false;
         }
     }
 
     // CADASTRAR UMA NOVA AMOSTRA
     static async insertAmostra(req, res) {
-        try {
-            let amostra = new amostras(req.body);
-            await amostra.save();
-            return res.status(200).send(amostra);
-        } catch (error) {
-            return res.status(500).json(error.message);
-        }
+        let amostra = new amostras(req.body);
+        amostras.find({ 'cod': amostra.cod }, {}, (err, amostras) => {
+            if (amostras.length == 0) {
+                try {
+                    amostra.save();
+                    console.log("salvou");
+                    return res.status(200).send(amostra);
+                } catch (error) {
+                    console.log("erro ao salvar");
+                    return res.status(500).json(error.message);
+                }
+            } else {
+                return res.status(500).json({ msg: "Codigo ja existente" });
+            }
+        });
     }
 
     // ALTERAR OS DADOS DE UMA AMOSTRA
