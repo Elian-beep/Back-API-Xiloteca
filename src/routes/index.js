@@ -2,6 +2,7 @@ import express from "express";
 import amostras from './amostrasRoute.js';
 import usuarios from './usuariosRoute.js';
 import admin from './adminRoute.js';
+import picture from "./pictureRoute.js";
 
 const routes = (app) => {
     app.route('/').get((req, res) => {
@@ -12,7 +13,8 @@ const routes = (app) => {
         express.json(),
         amostras,
         usuarios,
-        admin
+        admin,
+        picture
     );
 }
 

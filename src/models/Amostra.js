@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const amostraSchema = new mongoose.Schema(
     {
-        id: {type: String},
         cod: {type: String, required: true},
         lamina: {type: String},
         herb: {type: String},
@@ -15,7 +14,7 @@ const amostraSchema = new mongoose.Schema(
         determinador: {type: String},
         remetente: {type: String},
         desc: {type: String},
-        obs: {type: String}
+        obs: {type: String},
     },{
         versionKey: false
     }
