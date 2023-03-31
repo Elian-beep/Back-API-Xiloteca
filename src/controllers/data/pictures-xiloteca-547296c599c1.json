@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pictures-xiloteca",
+  "private_key_id": "547296c599c14379158c86a84fa27ed5b54bb33d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQDSfIWhJMlWSekz\nmk69QCtNnfMG8xPeEi2p69Fij8Bk2RwSUq42j8OxuxX9hlwEvFqZ9H3IaC7Ejkzu\niay077hw+0+te0fjxI75qVd93ZjzV7Dqj93nWGTzNluPIEulWKGAJwhTxdEvlteI\nnG+TOy28WQVI9/CQd5eGi58bph9va0E79UnFMhRUbyfsQozspuJQF7lTMi83DwHr\nU1bvggLNldDHQt5pTpnv0Hw1AXMjFJko7qXGnwH/ExpYI40O+jmlgGRRgfMNN6uO\nsd9iqVEus3m0yLiX7QdWDPw2lP9rNWSy44VG5IncogZy7tDroHMnJhEVZcjMW5/5\nQCTEybwDAgMBAAECgf9OS73GhPQxR8FrwgYrApC7/RC7M5kksJ5jFr3vVIm8nKkO\ns2zr3tQ+DmVCl8O6LcqdNElnH+WLfcB9V+eVCWhYQYCE5L+HqLj6yIMrzqsKwogv\noT0kOfeBxsIw5Ayz3X5kUCCl8YbqT8k5/DzKk0R7qHL9YCX5OiYXlNgx2Xapesky\nS7aAI4PUuHpUezEPhCLpdyPsytGR/QAQ3E//+hmJNYIO3yEs612OkWkrI9P93xpC\nN4ZW7z7lTtd+Ncw96wgdhyTz8N3xG245POB5UYcO+pbeQRIPZHp8OGqDYs4CCod7\nBD2U/968RtrrcJfD0HvCybQhH/YZOWxl/Pk1t/ECgYEA+FYB4zBvPWMQnmUV2ge+\nt0YWcLdWCXiWZNCUIniww9TLJiY5iFbKKQNyeNeSQLjEG5/uO3CNlxpGxUE3XbkO\nLkWFiIlw5nlYZQ+TDRQmhIrThk5/YH/z3w9wjblsXO6L+XiNnt3C2+UXDK1mHpbY\n4HRde4l8GUzC89EYbfHMqXMCgYEA2Pt7Z1+EHI3B6FaHT1B90SyOpUiU3QpijRLP\nyLIo1jcjBJSHjHHxVGSqGwvLGOObYyhXY9SHG28aBXbUL5Y6P1ckzoOHsliN/eDp\nw1GHj6DswB85Ay2UPf0gLfParKuCtHyv2krqNZVkPY0FDuTadOy1QBwTehv/Irkx\n1ZLuPzECgYAZjgAzuNA5qPAU3KIbBaECixvUDYm0/8u6JByaT4EhJcyh6F0TQpsb\nDVfCR6ytLFZB4XtKcpKfcfzGX6eq5VgoOs869anAjcwi2i9vsRslmIOb1ogVDhWy\nZoxWiTY1efa9fUJVjsx2hGSS0WUo0K0Qq+jSxZsXn2aQYHv7FF7TMQKBgGtC3fz6\n9abb2KhO5fKqWpfli9pe59/g+1i7nOWcVJ2YggIInn0p8l+Cp6hZCxwRn8XDsneS\nHvvLzzQ2Sqv/emnHXVWNJa5fIkoHPeekzPuOVJqglKFija6bC6ZLrqS+4AzyukeR\n0veMExJuPLrhHLDCNtMrTeGGJ3h1zhHC4W1xAoGAfETus53bWTMSm0FmEXZom4SV\nD125AG1K+NLofv0/ZvZOZ9K1hZmr1gDCvdTRIFwKKttkokRo2ipgli/LFzHrOvb/\nK1hdZr3WXDiw3O6S+d2E311zrbQqy96m5EsHA7OSmMK8s75EAPrk0A1DnBH4r6/G\nDomMjQo6vZrOxC3jcq0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "conta-servico-xiloteca@pictures-xiloteca.iam.gserviceaccount.com",
+  "client_id": "109832995003716357021",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/conta-servico-xiloteca%40pictures-xiloteca.iam.gserviceaccount.com"
+}
