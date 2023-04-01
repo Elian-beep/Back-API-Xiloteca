@@ -11,12 +11,12 @@ class PicturesController {
 
     static async create(req, res) {
         try{
-            const {name} = req.body;
-            const file = req.file;
+            // const file = req.file;
+            const { linkDrive } = req.body;
 
             const picture = new Picture({
-                name,
-                src: file.path
+                // src: file.path,
+                linkDrive
             });
             await picture.save()
             return res.json({picture, msg: "Imgem salva com sucesso!"})

@@ -1,12 +1,13 @@
 import express from "express";
 import PicturesController from "../controllers/PictureController.js";
 import upload from "../config/multer.js";
+import sendCloudStorage from "../config/sendCloudStorage.js";
 
 const router = express.Router();
 
 router
     .get('/imagens', PicturesController.findAll)
-    .post('/imagens', upload.single("file"), PicturesController.create)
+    .post('/imagens', PicturesController.create)
     .delete('/imagens/:id', PicturesController.remove)
 
 export default router;
