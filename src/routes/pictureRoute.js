@@ -1,7 +1,5 @@
 import express from "express";
 import PicturesController from "../controllers/PictureController.js";
-import upload from "../config/multer.js";
-import sendCloudStorage from "../config/sendCloudStorage.js";
 
 const router = express.Router();
 
