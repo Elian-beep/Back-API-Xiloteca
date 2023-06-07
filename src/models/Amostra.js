@@ -14,8 +14,7 @@ const amostraSchema = new mongoose.Schema(
         determinador: { type: String },
         remetente: { type: String },
         desc: { type: String },
-        obs: { type: String },
-        linkDrive: { type: String }
+        obs: { type: String }
     }, {
         versionKey: false
     }
