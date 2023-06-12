@@ -14,7 +14,8 @@ const amostraSchema = new mongoose.Schema(
         determinador: { type: String },
         remetente: { type: String },
         desc: { type: String },
-        obs: { type: String }
+        obs: { type: String },
+        imagens: [Object]  
     }, {
         versionKey: false
     }
