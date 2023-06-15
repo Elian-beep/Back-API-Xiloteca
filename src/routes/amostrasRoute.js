@@ -5,6 +5,7 @@ const router = express.Router();
 
 router
     .get('/amostras', AmostrasController.listAll)
+    .get('/amostras/page', AmostrasController.listAllPage)
     .get('/amostras/:id', AmostrasController.findId)
     .post('/amostras', AmostrasController.checkToken, AmostrasController.insertAmostra)
     .put('/amostras/:id', AmostrasController.checkToken, AmostrasController.alterAmostra)
