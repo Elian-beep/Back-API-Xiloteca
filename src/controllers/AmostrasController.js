@@ -35,7 +35,7 @@ class AmostrasController {
             return res.status(500).send(error.message);
         }
     }
-    
+
     // BUSCAR TODAS AS AMOSTRAS PAGINASS
     static async listAllPage(req, res) {
         try {
@@ -44,8 +44,8 @@ class AmostrasController {
             limit = Number(limit);
             offset = Number(offset);
 
-            if(!limit) limit = 100;
-            if(!offset) offset = 0;
+            if (!limit) limit = 100;
+            if (!offset) offset = 0;
 
             const allAmostras = await findAllService(offset, limit);
             const total = await countAmostras();
@@ -61,12 +61,51 @@ class AmostrasController {
                 });
             }
             return res.status(200).send({ nextUrl, previousUrl, limit, offset, total, results: allAmostras.map(amostra => (amostra)) })
-            // return res.status(200).json(allAmostras);
         } catch (error) {
             return res.status(500).send(error.message);
         }
     }
-    
+
+    static async listSearchPage(req, res) {
+        try {
+            let { limit, offset } = req.query;
+            const amostras = req.body;
+            limit = Number(limit);
+            offset = Number(offset);
+
+            if (!limit) limit = 100;
+            if (!offset) offset = 0;
+
+            const total = amostras.length;
+
+            const paginatedAmostras = amostras.slice(offset, offset + limit);
+
+            const next = offset + limit;
+            const nextUrl = next < total ? `/amostras/page/busca?limit=${limit}&offset=${next}` : null;
+
+            const previous = offset - limit < 0 ? null : offset - limit;
+            const previousUrl = previous !== null ? `/amostras/page/busca?limit=${limit}&offset=${previous}` : null;
+
+            if (paginatedAmostras.length === 0) {
+                return res.status(400).send({
+                    message: "Não há amostras para exibir.",
+                });
+            }
+
+            return res.status(200).send({
+                nextUrl,
+                previousUrl,
+                limit,
+                offset,
+                total,
+                results: paginatedAmostras,
+            });
+
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    }
+
     // BUSCAR AMOSTRA POR ID
     static async findId(req, res) {
         const { id } = req.params;

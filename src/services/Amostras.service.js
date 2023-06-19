@@ -1,10 +1,9 @@
 import amostras from "../models/Amostra.js";
 
 const findAllService = (offset, limit) => amostras.find()
-    .sort({ _id: 1 })
-    .skip(offset)
-    .limit(limit)
-;
+        .sort({ _id: 1 })
+        .skip(offset)
+        .limit(limit);
 
 const countAmostras = () => amostras.countDocuments();
 
