@@ -47,13 +47,13 @@ class AdminController {
         // CHECK IF USER EXISTS
         const user = await Admin.findOne({ usuario: admin.usuario });
         if (!user) {
-            return res.status(404).json({ msg: "Usuário não encontrado!" });
+            return res.status(404).json({ msg: "Usuário ou senha incorretos!" });
         }
 
         // CHECK IF PASSWORD MATCH
         const checkSenha = await bcrypt.compare(admin.senha, user.senha);
         if (!checkSenha) {
-            return res.status(422).json({ msg: "Senha inválida!" });
+            return res.status(422).json({ msg: "Usuário ou senha incorretos!" });
         }
 
         try {
@@ -62,15 +62,21 @@ class AdminController {
                 {
                     id: user._id
                 },
-                secret
+                secret,
+                {
+                    // expiresIn: 600 //10 minutos
+                    // expiresIn: 30 //30 segundos
+                    // expiresIn: '7d' //7 dias
+                    expiresIn: 3600 //1 hora
+                }
             );
             //ISERINDO TOKEN GERADO NO BANCO DE DADOS
-            const myToken = new Token({
-                token: token
-            });
-            await myToken.save();
+            // const myToken = new Token({
+            //     token: token
+            // });
+            // await myToken.save();
 
-            return res.status(200).json({ msg: "Autenticação realizada com sucesso: ", token, "Admin": user._id });
+            return res.status(200).json({ msg: "Autenticação realizada com sucesso: ", erro: false,  token, Admin: user._id });
         } catch (error) {
             res.status(500).json({ msg: 'Erro na autenticação: ', error });
         }
