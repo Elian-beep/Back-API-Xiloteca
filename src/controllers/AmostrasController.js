@@ -87,7 +87,7 @@ class AmostrasController {
             const previousUrl = previous !== null ? `/amostras/page/busca?limit=${limit}&offset=${previous}` : null;
 
             if (paginatedAmostras.length === 0) {
-                return res.status(400).send({
+                return res.status(200).send({
                     message: "Não há amostras para exibir.",
                 });
             }
